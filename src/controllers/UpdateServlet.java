@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -43,6 +44,12 @@ public class UpdateServlet extends HttpServlet {
 
             // フォームの内容を各フィールドに上書き
             String title = request.getParameter("title");
+            m.setTitle(title);
+
+            String content = request.getParameter("content");
+            m.setContent(content);
+
+            Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             m.setUpdated_at(currentTime);       // 更新日時のみ上書き
 
             // バリデーションを実行してエラーがあったら編集画面のフォームに戻る
